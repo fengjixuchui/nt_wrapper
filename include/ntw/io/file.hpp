@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Justas Masiulis
+ * Copyright 2020 Justas Masiulis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,10 @@ namespace ntw::io {
 
     /// \brief A blocking file API.
     template<class Handle, class Traits = traits::file_traits<Handle>>
-    struct basic_file : public detail::base_file<basic_file<Handle, Traits>, Traits> {
-        using base_type = detail::base_file<basic_file<Handle, Traits>, Traits>;
-        using base_type::handle;
-        using base_type::base_type;
-        using base_type::operator=;
+    struct basic_file : detail::base_file<basic_file<Handle, Traits>, Traits>, Handle {
+        using handle_type = Handle;
+        using handle_type::handle_type;
+        using handle_type::operator=;
 
         NTW_INLINE basic_file() = default;
 
@@ -90,4 +89,4 @@ namespace ntw::io {
 
 } // namespace ntw::io
 
-#include "../../../impl/io/file.inl"
+#include "impl/file.inl"

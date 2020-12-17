@@ -1,15 +1,32 @@
+/*
+ * Copyright 2020 Justas Masiulis
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 #pragma once
-#define PHNT_VERSION PHNT_19H2
-#include "macros.hpp"
-#include "../../../deps/GSL/include/gsl/span"
-#include "../../../deps/phnt/phnt_windows.h"
-#include "../../../deps/phnt/phnt.h"
+#define PHNT_VERSION PHNT_19H1
+#include "config.hpp"
+#include <phnt_windows.h>
+#include <phnt.h>
 #include <iterator>
+#include <cstdint>
+#include <span>
 
 namespace ntw {
 
-    using byte_span  = gsl::span<std::uint8_t>;
-    using cbyte_span = gsl::span<const std::uint8_t>;
+    using byte_span  = std::span<std::uint8_t>;
+    using cbyte_span = std::span<const std::uint8_t>;
 
     using ulong_t = unsigned long;
 

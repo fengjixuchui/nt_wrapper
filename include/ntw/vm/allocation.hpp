@@ -1,3 +1,19 @@
+/*
+ * Copyright 2020 Justas Masiulis
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 #pragma once
 #include "protection.hpp"
 #include "../result.hpp"
@@ -8,7 +24,7 @@ namespace ntw::vm {
     ///     .at(address)
     ///     .commit_reserve(size, protection);
     class allocation_builder {
-        const void*   _address = nullptr;
+        void*         _address = nullptr;
         std::size_t   _zero    = 0;
         std::uint32_t _type    = 0;
 
@@ -88,4 +104,4 @@ namespace ntw::vm {
 
 } // namespace ntw::vm
 
-#include "../../../impl/vm/allocation.inl"
+#include "impl/allocation.inl"

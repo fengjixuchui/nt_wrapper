@@ -1,6 +1,23 @@
+/*
+ * Copyright 2020 Justas Masiulis
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 #pragma once
 #include "../detail/common.hpp"
 #include <cstdint>
+#include <array>
 
 namespace ntw::se {
 
@@ -36,10 +53,10 @@ namespace ntw::se {
         NTW_INLINE constexpr SID_IDENTIFIER_AUTHORITY& identifier_authority();
 
         /// \brief Returns a span of the initialized sub authorities
-        NTW_INLINE constexpr gsl::span<std::uint32_t> sub_authorities();
+        NTW_INLINE constexpr std::span<std::uint32_t> sub_authorities();
 
         /// \brief Returns a span of the initialized sub authorities
-        NTW_INLINE constexpr gsl::span<const std::uint32_t> sub_authorities() const;
+        NTW_INLINE constexpr std::span<const std::uint32_t> sub_authorities() const;
 
         /// \brief Changes the amount of sub authorities stored
         NTW_INLINE constexpr void resize(std::size_t new_size);
@@ -48,9 +65,12 @@ namespace ntw::se {
         NTW_INLINE constexpr void push_back(std::uint32_t new_sub_auth);
     };
 
+    template<class... SubAuths>
+    static_sid(SID_IDENTIFIER_AUTHORITY, SubAuths...) -> static_sid<sizeof...(SubAuths)>;
+
 } // namespace ntw::se
 
-#include "../impl/se/sid.inl"
+#include "impl/sid.inl"
 
 namespace ntw::se::sid {
 

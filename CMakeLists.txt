@@ -9,7 +9,10 @@ set(NT_WRAPPER_INCLUDE_BUILD_DIR   "${PROJECT_SOURCE_DIR}/include/")
 
 add_library(${NT_WRAPPER_TARGET_NAME} INTERFACE)
 add_library(${PROJECT_NAME}::${NT_WRAPPER_TARGET_NAME} ALIAS ${NT_WRAPPER_TARGET_NAME})
-target_compile_features(${NT_WRAPPER_TARGET_NAME} INTERFACE cxx_std_17)
+target_compile_features(${NT_WRAPPER_TARGET_NAME} INTERFACE cxx_std_20)
+
+find_path(PHNT_INCLUDE_DIR phnt.h)
+include_directories(${PHNT_INCLUDE_DIR})
 
 target_include_directories(
     ${NT_WRAPPER_TARGET_NAME}

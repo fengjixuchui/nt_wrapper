@@ -1,3 +1,19 @@
+/*
+ * Copyright 2020 Justas Masiulis
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 #pragma once
 #include "../detail/unwrap.hpp"
 #include "attributes.hpp"
@@ -149,9 +165,15 @@ namespace ntw::ob {
         template<class ObjectHandle>
         NTW_INLINE status close_object(const ObjectHandle& handle) const noexcept;
 
+        /// \brief Suspends the process using NtSuspendProcess
         NTW_INLINE status suspend() const noexcept;
 
+        /// \brief Resumes the process using NtResumeProcess
         NTW_INLINE status resume() const noexcept;
+
+        /// \brief Terminates the process using NtTerminateProcess
+        /// \param status The status the process should terminate with.
+        NTW_INLINE status terminate(::ntw::status status) const noexcept;
     };
 
     using process     = basic_process<object>;
@@ -159,4 +181,4 @@ namespace ntw::ob {
 
 } // namespace ntw::ob
 
-#include "../../../impl/ob/process.inl"
+#include "impl/process.inl"

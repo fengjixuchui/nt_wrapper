@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Justas Masiulis
+ * Copyright 2020 Justas Masiulis
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -323,7 +323,7 @@ namespace ntw::io {
         {
             IO_STATUS_BLOCK iosb;
             return NTW_SYSCALL(NtNotifyChangeKey)(_handle.get(),
-                                                  unwrap_handle(event),
+                                                  unwrap(event),
                                                   nullptr,
                                                   nullptr,
                                                   &iosb,
@@ -340,4 +340,4 @@ namespace ntw::io {
 
 } // namespace ntw::io
 
-#include "../../../impl/io/registry_key.inl"
+#include "impl/registry_key.inl"
